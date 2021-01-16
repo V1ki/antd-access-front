@@ -1,57 +1,26 @@
-# Ant Design Pro
 
-This project is initialized with [Ant Design Pro](https://pro.ant.design). Follow is the quick guide for how to use.
+## 项目结构
 
-## Environment Prepare
-
-Install `node_modules`:
-
-```bash
-npm install
 ```
-
-or
-
-```bash
-yarn
+.
+├── package.json                 -- 这个就是项目配置相关 依赖包,名称,url ,命令脚本
+├── tsconfig.json                -- 这个主要就是typescript 编译配置相关的东西
+├── config                       -- 对项目在运行过程的一些配置.(静态配置)
+    ├── config.ts                -- 项目主配置文件入口
+    ├── routes.ts                -- 路由配置文件.
+    ├── proxy.ts                 -- 代理文件
+    └── defaultSettigns.ts       -- 默认配置
+├── mock                         -- 前端模拟后端接口返回.
+├── public                       -- logo . 一些图片.
+├── src                          -- 我们的源码,我们主要在这里编码
+    ├── components               -- 项目组件的存放地方. 推荐存放全局组件.
+    ├── e2e                      -- 端到端的测试文件.
+    ├── locales                  -- 国际化文件存放地方.
+    ├── models                   -- 存放model. dva model 以及 umi-plugin-model  .
+    ├── pages                    -- 页面的存放地方.
+    ├── services                 -- 服务的存放地方.对于前端来说,请求API.以及一些其他的操作.
+    ├── utils                    -- 工具文件
+    ├── app.tsx                  -- 项目配置(动态配置)
+    ├── access.ts                -- 权限定义文件
+    └── typing.d.ts              -- 全局的一些类型.
 ```
-
-## Provided Scripts
-
-Ant Design Pro provides some useful script to help you quick start and build with web project, code style check and test.
-
-Scripts provided in `package.json`. It's safe to modify or add additional script:
-
-### Start project
-
-```bash
-npm start
-```
-
-### Build project
-
-```bash
-npm run build
-```
-
-### Check code style
-
-```bash
-npm run lint
-```
-
-You can also use script to auto fix some lint error:
-
-```bash
-npm run lint:fix
-```
-
-### Test code
-
-```bash
-npm test
-```
-
-## More
-
-You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).

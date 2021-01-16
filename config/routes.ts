@@ -43,6 +43,12 @@
     component: './TableList',
   },
   {
+    name: 'list.test',
+    icon: 'accountBook',
+    path: '/test',
+    component: './List/Test'
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
