@@ -45,8 +45,8 @@
   {
     name: 'list.test',
     icon: 'accountBook',
-    path: '/test',
-    component: './List/Test'
+    path: '/roles',
+    component: './roles'
   },
   {
     path: '/',

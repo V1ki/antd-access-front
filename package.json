@@ -61,7 +61,6 @@
     "react-dev-inspector": "^1.1.1",
     "react-dom": "^17.0.0",
     "react-helmet-async": "^1.0.4",
-    "umi": "^3.2.14",
     "umi-request": "^1.0.8"
   },
   "devDependencies": {
@@ -71,6 +70,7 @@
     "@types/history": "^4.7.2",
     "@types/jest": "^26.0.0",
     "@types/lodash": "^4.14.144",
+    "@types/puppeteer": "^5.4.2",
     "@types/qs": "^6.5.3",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -85,20 +85,23 @@
     "carlo": "^0.9.46",
     "cross-env": "^7.0.0",
     "cross-port-killer": "^1.1.1",
-    "detect-installer": "^1.0.1",
+    "detect-installer": "^1.0.2",
     "enzyme": "^3.11.0",
     "eslint": "^7.1.0",
     "express": "^4.17.1",
     "gh-pages": "^3.0.0",
+    "jest-puppeteer": "^4.4.0",
     "jsdom-global": "^3.0.2",
     "lint-staged": "^10.0.0",
     "mockjs": "^1.0.1-beta3",
     "prettier": "^2.0.1",
     "prettier-plugin-style-order": "^0.2.2",
     "pro-download": "1.0.1",
+    "puppeteer": "^5.5.0",
     "puppeteer-core": "^5.0.0",
     "stylelint": "^13.0.0",
-    "typescript": "^4.0.3"
+    "typescript": "^4.0.3",
+    "umi": "^3.3.7"
   },
   "engines": {
     "node": ">=10.0.0"

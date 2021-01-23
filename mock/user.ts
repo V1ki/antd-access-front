@@ -150,7 +150,7 @@ export default {
       type,
       currentAuthority: 'guest',
     });
-    access = 'guest';
+    // access = 'guest';
   },
   'GET /api/login/outLogin': (req: Request, res: Response) => {
     access = '';
