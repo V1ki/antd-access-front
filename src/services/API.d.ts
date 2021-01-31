@@ -32,4 +32,15 @@ declare namespace API {
     extra: any;
     status: string;
   };
+
+  export type Role = {
+    id: string;
+    name: string ;
+    identifier: string ;
+    order: number ;
+    enabled: boolean ;
+    // 过期时间. 非必须
+    expireTime? : number ;
+  }
+
 }
