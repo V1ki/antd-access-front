@@ -2,8 +2,9 @@ import ProTable, { ActionType } from '@ant-design/pro-table';
 import type { ProColumns } from '@ant-design/pro-table';
 import React, { useState, useRef } from 'react';
 import { getRoles, createRole, updateRole, deleteRole } from '@/services/roles';
-import { Button, Modal, Form, Input, Checkbox, InputNumber, message ,Space } from 'antd';
+import { Button, Modal, Form, Input, Checkbox, InputNumber, message, Space } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import { useIntl } from 'umi';
 
 
 
@@ -45,39 +46,62 @@ const handleDeleteRole: (id: string) => Promise<boolean> = async (id) => {
 const RoleList: React.FC = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [editRole, setEditRole] = useState<API.Role | null>(null) ;
   const [form] = Form.useForm();
   const tableRef = useRef<ActionType>();
+  const intl = useIntl();
 
   const columns: ProColumns<API.Role>[] = [
     {
-      title: "ID",
+      title: intl.formatMessage({
+        id: 'roles.column.id',
+        defaultMessage: "ID"
+      }),
       dataIndex: "id", // data.id or data["id"]
     },
     {
-      title: "Name",
+      title: intl.formatMessage({
+        id: 'roles.column.name',
+        defaultMessage: "Name"
+      }),
       dataIndex: "name",
     },
     {
-      title: "Name",
+      title: intl.formatMessage({
+        id: 'roles.column.identifier',
+        defaultMessage: "Identifier"
+      }),
       dataIndex: "identifier",
     },
     {
-      title: "Order",
+      title: intl.formatMessage({
+        id: 'roles.column.order',
+        defaultMessage: "Order"
+      }),
       dataIndex: "order",
     },
     {
-      title: "enabled",
+      title: intl.formatMessage({
+        id: 'roles.column.enabled',
+        defaultMessage: "Enabled"
+      }),
       dataIndex: "enabled",
       // renderText: (text: any, record: API.Role, index: number) => {
       //   return record.enabled ? "已启用": "未启用"
       // }
       valueEnum: {
         "true": {
-          text: "已启用",
+          text: intl.formatMessage({
+            id: 'roles.column.enabled.true',
+            defaultMessage: "enabled"
+          }),
           status: "Success"
         },
         "false": {
-          text: "未启用",
+          text: intl.formatMessage({
+            id: 'roles.column.enabled.false',
+            defaultMessage: "disable"
+          }),
           status: "Warning"
         }
       }
@@ -87,19 +111,27 @@ const RoleList: React.FC = () => {
       dataIndex: 'action',
       render: (dom: any, entity: API.Role, index: number) => {
         return (<>
-         <Space> <Button icon={<EditOutlined />} onClick={() => {
-            setModalVisible(true);
-            form.setFieldsValue(entity);
-          }} />
-          <Button icon={<DeleteOutlined />} onClick={async () => {
+          <Space>
+            <Button
+              id={`roles-update-${entity.identifier}`}
+              icon={<EditOutlined />}
+              onClick={() => {
+                setEditRole(entity);
+                setModalVisible(true);
+                form.setFieldsValue(entity);
+              }} />
+            <Button
+              id={`roles-delete-${entity.identifier}`}
+              icon={<DeleteOutlined />}
+              onClick={async () => {
 
-            const result = await handleDeleteRole(entity.id);
-            if (result) {
-              if (tableRef.current) {
-                tableRef.current.reload();
-              }
-            }
-          }} />
+                const result = await handleDeleteRole(entity.id);
+                if (result) {
+                  if (tableRef.current) {
+                    tableRef.current.reload();
+                  }
+                }
+              }} />
           </Space>
         </>)
       }
@@ -119,16 +151,22 @@ const RoleList: React.FC = () => {
       toolbar={{
         actions: [
           (
-            <Button type="primary" onClick={() => {
+            <Button type="primary" id="role-create" onClick={() => {
               setModalVisible(true);
-            }}>新建</Button>
+            }}>{intl.formatMessage({
+              id: 'roles.btn.create',
+              defaultMessage: "create"
+            })}</Button>
           )
         ]
       }}
     />
 
     <Modal
-      onCancel={() => setModalVisible(false)}
+      onCancel={() => {
+        setModalVisible(false);
+        setEditRole(null);
+      } }
       onOk={() => {
         form.validateFields()
           .then(async values => {
@@ -136,6 +174,7 @@ const RoleList: React.FC = () => {
             const result = await handleSaveRole(values);
             if (result) {
               setModalVisible(false);
+              setEditRole(null);
               if (tableRef.current) {
                 tableRef.current.reload();
               }
@@ -147,23 +186,40 @@ const RoleList: React.FC = () => {
 
       <Form form={form}>
 
-        <Form.Item label="role.id" name="id" hidden>
+        <Form.Item label={intl.formatMessage({
+          id: "roles.column.id",
+          defaultMessage: "ID"
+        })} name="id" hidden>
           <Input />
         </Form.Item>
-        <Form.Item label="role.name" name="name" required={true}>
+        <Form.Item label={intl.formatMessage({
+          id: "roles.column.name",
+          defaultMessage: "Name"
+        })} name="name" required={true}>
           <Input />
         </Form.Item>
 
-        <Form.Item label="role.identifier" name="identifier" required={true}>
-          <Input />
+        <Form.Item label={intl.formatMessage({
+          id: "roles.column.identifier",
+          defaultMessage: "Identifier"
+        })} name="identifier"
+
+          required={true}>
+          <Input disabled={!!editRole?.id} />
         </Form.Item>
 
-        <Form.Item label="role.order" name="order" required={true}>
+        <Form.Item label={intl.formatMessage({
+          id: "roles.column.order",
+          defaultMessage: "Order"
+        })} name="order" required={true}>
           <InputNumber />
         </Form.Item>
 
         <Form.Item
-          label="role.enabled"
+          label={intl.formatMessage({
+            id: "roles.column.enabled",
+            defaultMessage: "Enabled"
+          })}
           name="enabled"
           valuePropName="checked"
           required={true} >

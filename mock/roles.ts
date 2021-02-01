@@ -30,6 +30,14 @@ const getRoles = async (req: Request, res: Response) => {
 };
 
 const createRole = async (req: Request , res:Response) => {
+  const index = roles.findIndex( r =>r.identifier === req.body.identifier)  ;
+  if(index !== -1){
+
+  return res.json({
+    success: false,
+    data: "identifier 已经存在",
+  });
+  }
 
   const role : API.Role = {
     id: `${roles.length + 1}`,

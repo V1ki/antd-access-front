@@ -30,7 +30,8 @@
     "test": "umi test",
     "test:all": "node ./tests/run-tests.js",
     "test:component": "umi test ./src/components",
-    "tsc": "tsc --noEmit"
+    "tsc": "tsc --noEmit",
+    "cypress": "./node_modules/.bin/cypress open"
   },
   "lint-staged": {
     "**/*.less": "stylelint --syntax less",
@@ -85,6 +86,7 @@
     "carlo": "^0.9.46",
     "cross-env": "^7.0.0",
     "cross-port-killer": "^1.1.1",
+    "cypress": "^6.3.0",
     "detect-installer": "^1.0.2",
     "enzyme": "^3.11.0",
     "eslint": "^7.1.0",
@@ -93,6 +95,7 @@
     "jest-puppeteer": "^4.4.0",
     "jsdom-global": "^3.0.2",
     "lint-staged": "^10.0.0",
+    "minimist": "^1.2.5",
     "mockjs": "^1.0.1-beta3",
     "prettier": "^2.0.1",
     "prettier-plugin-style-order": "^0.2.2",
