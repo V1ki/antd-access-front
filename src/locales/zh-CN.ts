@@ -6,6 +6,7 @@ import settingDrawer from './zh-CN/settingDrawer';
 import settings from './zh-CN/settings';
 import pages from './zh-CN/pages';
 import roles from './zh-CN/roles' ;
+import data_menus from './zh-CN/data_menus' ;
 
 export default {
   'navBar.lang': '语言',
@@ -22,5 +23,6 @@ export default {
   ...settings,
   ...pwa,
   ...component,
-  ...roles
+  ...roles,
+  ...data_menus
 };

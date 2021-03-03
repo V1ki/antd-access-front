@@ -42,5 +42,25 @@ declare namespace API {
     // 过期时间. 非必须
     expireTime? : number ;
   }
+  export type Menu = {
+
+    id: string;
+    name: string ;
+    icon: string ;
+    // 路径
+    path: string ;
+    component: string ;
+    parent: string ;
+    hide: boolean ;
+    order: number ;
+
+
+    // 子菜单
+    children?: Menu[]  ;
+    type?: 'inner' | 'outter' | undefined ;
+
+  }
+
 
 }
+

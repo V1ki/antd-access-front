@@ -49,6 +49,12 @@
     component: './roles'
   },
   {
+    name: 'menu',
+    icon: 'accountBook',
+    path: '/menus',
+    component: './menus'
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
