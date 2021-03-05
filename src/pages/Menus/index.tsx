@@ -175,7 +175,7 @@ const RoleList: React.FC = () => {
       toolbar={{
         actions: [
           (
-            <Button type="primary" id="role-create" onClick={() => {
+            <Button type="primary" id="menu-create" onClick={() => {
               setModalVisible(true);
             }}>{intl.formatMessage({
               id: 'menus.btn.create',
@@ -235,7 +235,7 @@ const RoleList: React.FC = () => {
         })} name="icon"
 
           required={true}>
-          <Input disabled={!!editMenu?.id} />
+          <Input />
         </Form.Item>
         <Form.Item label={intl.formatMessage({
           id: "menus.column.path",
@@ -243,7 +243,7 @@ const RoleList: React.FC = () => {
         })} name="path"
 
           required={true}>
-          <Input disabled={!!editMenu?.id} />
+          <Input />
         </Form.Item>
         <Form.Item label={intl.formatMessage({
           id: "menus.column.component",
@@ -251,7 +251,7 @@ const RoleList: React.FC = () => {
         })} name="component"
 
           required={true}>
-          <Input disabled={!!editMenu?.id} />
+          <Input  />
         </Form.Item>
 
 

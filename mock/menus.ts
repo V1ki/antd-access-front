@@ -113,7 +113,8 @@ const createMenu = async (req: Request , res:Response) => {
 
 const updateMenu = async (req: Request , res:Response) => {
 
-  const index = total_menus.findIndex( r =>r.path === req.body.path)  ;
+  const id = req.params.id ;
+  const index = total_menus.findIndex( r =>r.id === id)  ;
   if(index === -1){
 
   return res.json({
@@ -121,12 +122,11 @@ const updateMenu = async (req: Request , res:Response) => {
     data: "数据修改失败",
   });
   }
-  const lastMenu = menus[index];
-
+  const lastMenu = total_menus[index];
 
   const menu : API.Menu = {
 
-    id: `${ Math.random()}`,
+    id: id,
     name: req.body.name,
     icon: req.body.icon,
     parent: lastMenu.parent,
