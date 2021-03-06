@@ -3,12 +3,15 @@ import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import { notification } from 'antd';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
-import { history } from 'umi';
+import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import type { ResponseError } from 'umi-request';
 import { queryCurrent } from './services/user';
 import defaultSettings from '../config/defaultSettings';
+import { MenuDataItem } from '@umijs/route-utils';
+import { getMenus } from './services/menus';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
  * 获取用户信息比较慢的时候会展示一个 loading
@@ -20,7 +23,9 @@ export const initialStateConfig = {
 export async function getInitialState(): Promise<{
   settings?: LayoutSettings;
   currentUser?: API.CurrentUser;
+  menus?: MenuDataItem[];
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
+  fetchMenus: () => Promise<MenuDataItem[]>;
 }> {
   const fetchUserInfo = async () => {
     try {
@@ -31,17 +36,41 @@ export async function getInitialState(): Promise<{
     }
     return undefined;
   };
+
+  const fetchMenus = async () => {
+    const resp = await getMenus();
+
+    const menu2MenuDataItem: (m: API.Menu) => MenuDataItem = (m: API.Menu) => {
+      const item: MenuDataItem = {
+        name: m.name,
+        path: m.path,
+        hideInMenu: m.hide,
+        icon: m.icon,
+        children: m.children?.map(menu2MenuDataItem),
+      };
+      return item;
+    };
+    if (resp?.success) {
+      return resp.data.map(menu2MenuDataItem);
+    }
+    return [];
+  };
+
   // 如果是登录页面，不执行
   if (history.location.pathname !== '/user/login') {
     const currentUser = await fetchUserInfo();
+    const menus = await fetchMenus();
     return {
       fetchUserInfo,
+      fetchMenus,
+      menus,
       currentUser,
       settings: defaultSettings,
     };
   }
   return {
     fetchUserInfo,
+    fetchMenus,
     settings: defaultSettings,
   };
 }
@@ -59,6 +88,30 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       }
     },
     menuHeaderRender: undefined,
+    menuDataRender: (menuData: MenuDataItem[]) => {
+      if (initialState?.menus) {
+        return initialState?.menus;
+      }
+      return menuData;
+    },
+    menuItemRender: (item) => {
+      return (
+        <>
+          <Link to={item.path || '/'}>
+            <FontAwesomeIcon icon={`${item.icon}`} />
+            {item.name}
+          </Link>
+        </>
+      );
+    },
+    subMenuItemRender: (item) => {
+      return (
+        <>
+          <FontAwesomeIcon icon={item.icon} />
+          {item.name}
+        </>
+      );
+    },
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,
     ...initialState?.settings,

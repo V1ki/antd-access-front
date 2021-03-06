@@ -1,4 +1,6 @@
-﻿export default [
+﻿import type { IBestAFSRoute } from '@umijs/plugin-layout';
+
+const routes: IBestAFSRoute[] = [
   {
     path: '/user',
     layout: false,
@@ -46,13 +48,13 @@
     name: 'list.test',
     icon: 'accountBook',
     path: '/roles',
-    component: './roles'
+    component: './roles',
   },
   {
     name: 'menu',
     icon: 'accountBook',
     path: '/menus',
-    component: './menus'
+    component: './menus',
   },
   {
     path: '/',
@@ -62,3 +64,4 @@
     component: './404',
   },
 ];
+export default routes;

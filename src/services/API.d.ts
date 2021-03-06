@@ -35,32 +35,25 @@ declare namespace API {
 
   export type Role = {
     id: string;
-    name: string ;
-    identifier: string ;
-    order: number ;
-    enabled: boolean ;
+    name: string;
+    identifier: string;
+    order: number;
+    enabled: boolean;
     // 过期时间. 非必须
-    expireTime? : number ;
-  }
+    expireTime?: number;
+  };
   export type Menu = {
-
     id: string;
-    name: string ;
-    icon: string ;
+    name: string;
+    icon: string;
     // 路径
-    path: string ;
-    component: string ;
-    parent: string ;
-    hide: boolean ;
-    order: number ;
-
+    path: string;
+    parent: string;
+    hide: boolean;
+    order: number;
 
     // 子菜单
-    children?: Menu[]  ;
-    type?: 'inner' | 'outter' | undefined ;
-
-  }
-
-
+    children?: Menu[];
+    type?: 'inner' | 'outter' | undefined;
+  };
 }
-

@@ -1,13 +1,16 @@
 export default {
-  'menus.column.id': "主键",
-  'menus.column.name': "菜单名称",
-  'menus.column.identifier': "菜单标识",
+  'menus.column.id': '主键',
+  'menus.column.name': '名称',
+  'menus.column.path': '路径',
 
-  'menus.column.order': "菜单优先级",
-  'menus.column.enabled': "是否启用",
-  'menus.column.hide.true': "不显示",
-  'menus.column.hide.false': "显示",
+  'menus.column.icon': '图标',
+  'menus.column.parent': '父菜单',
+  'menus.column.component': ' ',
 
-  'menus.btn.create' : "新建菜单"
+  'menus.column.order': '顺序',
+  'menus.column.hide': '在菜单中隐藏',
+  'menus.column.hide.true': '不显示',
+  'menus.column.hide.false': '显示',
 
-}
+  'menus.btn.create': '新建菜单',
+};

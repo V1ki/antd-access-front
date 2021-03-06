@@ -52,7 +52,13 @@ const Login: React.FC = () => {
 
   const fetchUserInfo = async () => {
     const userInfo = await initialState?.fetchUserInfo?.();
+    const menus = await initialState?.fetchMenus?.();
     if (userInfo) {
+      setInitialState({
+        ...initialState,
+        menus,
+      });
+
       setInitialState({
         ...initialState,
         currentUser: userInfo,

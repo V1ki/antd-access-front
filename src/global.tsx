@@ -3,9 +3,16 @@ import { Button, message, notification } from 'antd';
 import React from 'react';
 import { useIntl } from 'umi';
 import defaultSettings from '../config/defaultSettings';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import * as solid_icon from '@fortawesome/free-solid-svg-icons';
 
 const { pwa } = defaultSettings;
 const isHttps = document.location.protocol === 'https:';
+
+const icons = Object.keys(solid_icon)
+  .filter((k) => k !== 'fas' && k !== 'prefix')
+  .map((k) => solid_icon[k]);
+library.add(icons);
 
 // if pwa is true
 if (pwa) {
