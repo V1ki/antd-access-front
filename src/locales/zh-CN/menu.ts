@@ -52,4 +52,5 @@ export default {
 
   'menu.list.test': '测试页面',
   'menu.menus': '菜单管理',
+  'menu.user': '用户管理',
 };

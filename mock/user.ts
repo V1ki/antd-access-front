@@ -1,5 +1,29 @@
 import { Request, Response } from 'express';
 
+const total_users: API.User[] = [
+  {
+    id: '1',
+    account: 'admin',
+    name: 'Serati Ma',
+    passwd: 'ant.design',
+    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    mobile: 'xxxxxxxxx',
+    email: 'antdesign@alipay.com',
+    status: '',
+  },
+
+  {
+    id: '2',
+    account: 'user',
+    name: 'V1ki',
+    passwd: 'ant.design',
+    avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
+    mobile: 'xxxxxxxxx',
+    email: 'antdesign@alipay.com',
+    status: '',
+  },
+];
+
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
     setTimeout(() => {
@@ -20,17 +44,99 @@ const { ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION } = process.env;
  * current user access， if is '', user need login
  * 如果是 pro 的预览，默认是有权限的
  */
-let access = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site' ? 'admin' : '';
+// let access = ANT_DESIGN_PRO_ONLY_DO_NOT_USE_IN_YOUR_PRODUCTION === 'site' ? 'admin' : '';
 
-const getAccess = () => {
-  return access;
+let user: API.User | null = null;
+
+const getUsers = async (req: Request, res: Response) => {
+  const result = {
+    success: true,
+    data: total_users,
+  };
+  return res.json(result);
+};
+
+const deleteUser = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const index = total_users.findIndex((r) => r.id === id);
+  if (index === -1) {
+    return res.json({
+      success: false,
+      data: '数据不存在',
+    });
+  }
+
+  total_users.splice(index, 1);
+  const result = {
+    success: true,
+    data: '数据删除成功',
+  };
+  return res.json(result);
+};
+
+const createUser = async (req: Request, res: Response) => {
+  const account = req.body.account;
+
+  const index = total_users.findIndex((r) => r.account === account);
+  if (index !== -1) {
+    return res.json({
+      success: false,
+      data: '用户已存在',
+    });
+  }
+
+  const newUser: API.User = {
+    id: `${total_users.length + 1}`,
+    account: account,
+    name: req.body.name,
+    passwd: req.body.passwd,
+    avatar: req.body.avatar,
+    mobile: req.body.mobile,
+    email: req.body.email,
+    status: '',
+  };
+  total_users.push(newUser);
+  const result = {
+    success: true,
+    data: '数据添加成功',
+  };
+  return res.json(result);
+};
+
+const updateUser = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const index = total_users.findIndex((r) => r.id === id);
+  if (index === -1) {
+    return res.json({
+      success: false,
+      data: '数据不存在',
+    });
+  }
+  const oldUser = total_users[index];
+  const newUser: API.User = {
+    id: oldUser.id,
+    account: oldUser.account,
+    name: req.body.name,
+    passwd: req.body.passwd,
+    avatar: req.body.avatar,
+    mobile: req.body.mobile,
+    email: req.body.email,
+    status: '',
+  };
+
+  total_users.splice(index, 1, newUser);
+  const result = {
+    success: true,
+    data: '数据修改功',
+  };
+  return res.json(result);
 };
 
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 export default {
   // 支持值为 Object 和 Array
   'GET /api/currentUser': (req: Request, res: Response) => {
-    if (!getAccess()) {
+    if (!user) {
       res.status(401).send({
         data: {
           isLogin: false,
@@ -41,119 +147,48 @@ export default {
       });
       return;
     }
+
     res.send({
-      name: 'Serati Ma',
-      avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
-      userid: '00000001',
-      email: 'antdesign@alipay.com',
-      signature: '海纳百川，有容乃大',
-      title: '交互专家',
-      group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
-      tags: [
-        {
-          key: '0',
-          label: '很有想法的',
-        },
-        {
-          key: '1',
-          label: '专注设计',
-        },
-        {
-          key: '2',
-          label: '辣~',
-        },
-        {
-          key: '3',
-          label: '大长腿',
-        },
-        {
-          key: '4',
-          label: '川妹子',
-        },
-        {
-          key: '5',
-          label: '海纳百川',
-        },
-      ],
-      notifyCount: 12,
-      unreadCount: 11,
-      country: 'China',
-      access: getAccess(),
-      geographic: {
-        province: {
-          label: '浙江省',
-          key: '330000',
-        },
-        city: {
-          label: '杭州市',
-          key: '330100',
-        },
-      },
-      address: '西湖区工专路 77 号',
-      phone: '0752-268888888',
+      name: user.name,
+      avatar: user.avatar,
+      userid: user.id,
+      email: user.email,
+      access: 'admin',
+      phone: user.email,
     });
   },
-  // GET POST 可省略
-  'GET /api/users': [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-    },
-  ],
   'POST /api/login/account': async (req: Request, res: Response) => {
     const { password, username, type } = req.body;
     await waitTime(2000);
-    if (password === 'ant.design' && username === 'admin') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      access = 'admin';
-      return;
-    }
-    if (password === 'ant.design' && username === 'user') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'user',
-      });
-      access = 'user';
-      return;
-    }
+
     if (type === 'mobile') {
       res.send({
-        status: 'ok',
+        status: 'error',
         type,
-        currentAuthority: 'admin',
       });
-      access = 'admin';
       return;
     }
 
+    const index = total_users.findIndex((u) => u.account === username && u.passwd === password);
+
+    if (index === -1) {
+      res.send({
+        status: 'error',
+        type,
+      });
+      return;
+    }
+    user = total_users[index];
+
     res.send({
-      status: 'error',
+      status: 'ok',
       type,
-      currentAuthority: 'guest',
+      currentAuthority: 'admin',
     });
-    // access = 'guest';
+    return;
   },
   'GET /api/login/outLogin': (req: Request, res: Response) => {
-    access = '';
+    user = null;
     res.send({ data: {}, success: true });
   },
   'POST /api/register': (req: Request, res: Response) => {
@@ -197,4 +232,9 @@ export default {
   },
 
   'GET  /api/login/captcha': getFakeCaptcha,
+
+  'DELETE /api/user/:id': deleteUser,
+  'POST /api/user/:id': updateUser,
+  'POST /api/user': createUser,
+  'GET /api/users': getUsers,
 };

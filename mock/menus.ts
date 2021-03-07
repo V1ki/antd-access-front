@@ -37,12 +37,27 @@ const total_menus: API.Menu[] = [
     path: '/menus',
     parent: '0',
     hide: false,
-    order: 0,
+    order: 3,
+  },
+  {
+    id: '5',
+    name: 'list.test',
+    icon: 'user-secret',
+    path: '/roles',
+    parent: '0',
+    hide: false,
+    order: 4,
+  },
+  {
+    id: '6',
+    name: 'user',
+    icon: 'user',
+    path: '/users',
+    parent: '0',
+    hide: false,
+    order: 2,
   },
 ];
-
-// DTO
-// POJO
 
 const menus: API.Menu[] = [];
 
@@ -50,6 +65,7 @@ const refreshMenus: () => void = () => {
   menus.splice(0, menus.length);
   total_menus
     .filter((m) => m.parent === '0')
+    .sort((a, b) => a.order - b.order)
     .forEach((m) => {
       const items = total_menus.filter((item) => item.parent === m.id);
 
@@ -60,7 +76,7 @@ const refreshMenus: () => void = () => {
       //   })
       // }
 
-      m.children = items;
+      m.children = items.sort((a, b) => a.order - b.order);
 
       menus.push(m);
     });

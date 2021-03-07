@@ -1,5 +1,19 @@
 # antd-access
 
+## 进度
+
+- [x] 1. 创建前后端项目. 视频地址: [https://www.bilibili.com/video/BV1Bp4y1s7xQ/](https://www.bilibili.com/video/BV1Bp4y1s7xQ/)
+- [x] 2. 前端项目的结构.以及创建页面. 视频地址: [https://www.bilibili.com/video/BV1Xv4y1Z72e/](https://www.bilibili.com/video/BV1Xv4y1Z72e/)
+- [x] 3. 创建列表页面, 然后编写测试用例. 视频地址: [https://www.bilibili.com/video/BV19K4y1W7Gs/](https://www.bilibili.com/video/BV19K4y1W7Gs/)
+- [x] 4. 开发思路及规划. 视频地址: [https://www.bilibili.com/video/BV1wz4y1D7dK/](https://www.bilibili.com/video/BV1wz4y1D7dK/)
+- [x] 5. 角色界面的新建,编辑,删除. 视频地址: [https://www.bilibili.com/video/BV1Yv4y1o78w/](https://www.bilibili.com/video/BV1Yv4y1o78w/)
+- [x] 6. 角色界面的 E2E 测试,优化,以及增加国际化的代码. 视频地址: [https://www.bilibili.com/video/BV1ZV411q7k3/](https://www.bilibili.com/video/BV1ZV411q7k3/)
+- [x] 7. 菜单界面的 CRUD. 视频地址: [https://www.bilibili.com/video/BV1F5411K7Jb/](https://www.bilibili.com/video/BV1F5411K7Jb/)
+- [x] 8. 菜单界面的 E2E 测试,优化. 视频地址: [https://www.bilibili.com/video/BV1GZ4y1P7tF/](https://www.bilibili.com/video/BV1GZ4y1P7tF/)
+- [x] 9. 整体菜单与菜单数据的联动,补充之前菜单的国际化的缺失部分. 视频地址: [https://www.bilibili.com/video/BV1Sv411h7FS/](https://www.bilibili.com/video/BV1Sv411h7FS/)
+- [x] 10. 用户界面的 CRUD. 视频地址: 视频地址: [https://www.bilibili.com/video/bv1oi4y1N7X2](https://www.bilibili.com/video/bv1oi4y1N7X2)
+- [ ] 11. 用户界面的 E2E 测试,优化.
+
 ## 项目结构
 
 ```
@@ -25,16 +39,3 @@
     ├── access.ts                -- 权限定义文件
     └── typing.d.ts              -- 全局的一些类型.
 ```
-
-## 进度
-
-- [x] 1. 创建前后端项目.
-- [x] 2. 前端项目的结构.以及创建页面.
-- [x] 3. 创建列表页面, 然后编写测试用例.
-- [x] 4. 开发思路及规划.
-- [x] 5. 角色界面的新建,编辑,删除.
-- [x] 6. 角色界面的 E2E 测试,优化,以及增加国际化的代码.
-- [x] 6. 角色界面的 E2E 测试,优化,以及增加国际化的代码.
-- [x] 7. 菜单界面的 CRUD.
-- [x] 8. 菜单界面的 E2E 测试,优化.
-- [x] 9. 整体菜单与菜单数据的联动,补充之前菜单的国际化的缺失部分.

@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import { notification } from 'antd';
@@ -9,7 +8,7 @@ import Footer from '@/components/Footer';
 import type { ResponseError } from 'umi-request';
 import { queryCurrent } from './services/user';
 import defaultSettings from '../config/defaultSettings';
-import { MenuDataItem } from '@umijs/route-utils';
+import type { MenuDataItem } from '@umijs/route-utils';
 import { getMenus } from './services/menus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -25,7 +24,7 @@ export async function getInitialState(): Promise<{
   currentUser?: API.CurrentUser;
   menus?: MenuDataItem[];
   fetchUserInfo?: () => Promise<API.CurrentUser | undefined>;
-  fetchMenus: () => Promise<MenuDataItem[]>;
+  fetchMenus?: () => Promise<MenuDataItem[]>;
 }> {
   const fetchUserInfo = async () => {
     try {

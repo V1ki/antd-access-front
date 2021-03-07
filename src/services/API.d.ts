@@ -56,4 +56,15 @@ declare namespace API {
     children?: Menu[];
     type?: 'inner' | 'outter' | undefined;
   };
+
+  export type User = {
+    id: string;
+    account: string;
+    name: string;
+    passwd: string;
+    avatar: string;
+    mobile: string;
+    email: string;
+    status: string;
+  };
 }

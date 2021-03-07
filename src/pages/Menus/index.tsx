@@ -1,5 +1,5 @@
-import ProTable, { ActionType } from '@ant-design/pro-table';
-import type { ProColumns } from '@ant-design/pro-table';
+import ProTable from '@ant-design/pro-table';
+import type { ProColumns, ActionType } from '@ant-design/pro-table';
 import React, { useState, useRef } from 'react';
 import { getMenus, createMenu, updateMenu, deleteMenu } from '@/services/menus';
 import { Button, Modal, Form, Input, Checkbox, InputNumber, message, Space } from 'antd';

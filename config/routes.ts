@@ -57,6 +57,10 @@ const routes: IBestAFSRoute[] = [
     component: './menus',
   },
   {
+    path: '/users',
+    component: './User/List',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
