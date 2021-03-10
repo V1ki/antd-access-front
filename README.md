@@ -11,8 +11,8 @@
 - [x] 7. 菜单界面的 CRUD. 视频地址: [https://www.bilibili.com/video/BV1F5411K7Jb/](https://www.bilibili.com/video/BV1F5411K7Jb/)
 - [x] 8. 菜单界面的 E2E 测试,优化. 视频地址: [https://www.bilibili.com/video/BV1GZ4y1P7tF/](https://www.bilibili.com/video/BV1GZ4y1P7tF/)
 - [x] 9. 整体菜单与菜单数据的联动,补充之前菜单的国际化的缺失部分. 视频地址: [https://www.bilibili.com/video/BV1Sv411h7FS/](https://www.bilibili.com/video/BV1Sv411h7FS/)
-- [x] 10. 用户界面的 CRUD. 视频地址: 视频地址: [https://www.bilibili.com/video/bv1oi4y1N7X2](https://www.bilibili.com/video/bv1oi4y1N7X2)
-- [ ] 11. 用户界面的 E2E 测试,优化.
+- [x] 10. 用户界面的 CRUD. 视频地址: [https://www.bilibili.com/video/bv1oi4y1N7X2](https://www.bilibili.com/video/bv1oi4y1N7X2)
+- [x] 11. 用户界面的 E2E 测试,优化. 视频地址: [https://www.bilibili.com/video/bv1Ry4y177db](https://www.bilibili.com/video/bv1Ry4y177db)
 
 ## 项目结构
 
@@ -39,3 +39,15 @@
     ├── access.ts                -- 权限定义文件
     └── typing.d.ts              -- 全局的一些类型.
 ```
+
+### B 站 BV 号
+
+11. 用户 E2E. bv1Ry4y177db
+12. 用户界面 CRUD. bv1oi4y1N7X2
+13. 菜单联动. BV1Sv411h7FS
+14. 菜单 E2E. BV1GZ4y1P7tF
+15. 菜单 CRUD. BV1F5411K7Jb
+16. 角色界面 E2E. BV1ZV411q7k3
+17. 角色界面 CRUD . BV1Yv4y1o78w
+18. 开发思路及规划. BV1wz4y1D7dK
+19. 角色界面 CRUD . BV19K4y1W7Gs
