@@ -13,6 +13,7 @@
 - [x] 9. 整体菜单与菜单数据的联动,补充之前菜单的国际化的缺失部分. 视频地址: [https://www.bilibili.com/video/BV1Sv411h7FS/](https://www.bilibili.com/video/BV1Sv411h7FS/)
 - [x] 10. 用户界面的 CRUD. 视频地址: [https://www.bilibili.com/video/bv1oi4y1N7X2](https://www.bilibili.com/video/bv1oi4y1N7X2)
 - [x] 11. 用户界面的 E2E 测试,优化. 视频地址: [https://www.bilibili.com/video/bv1Ry4y177db](https://www.bilibili.com/video/bv1Ry4y177db)
+- [x] 12. 给角色分配菜单.
 
 ## 项目结构
 

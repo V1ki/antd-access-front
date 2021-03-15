@@ -41,6 +41,8 @@ declare namespace API {
     enabled: boolean;
     // 过期时间. 非必须
     expireTime?: number;
+    // 角色所属菜单
+    menus: Menu[];
   };
   export type Menu = {
     id: string;

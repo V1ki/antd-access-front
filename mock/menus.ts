@@ -84,6 +84,30 @@ const refreshMenus: () => void = () => {
 
 refreshMenus();
 
+const formatMenus: (menus: string[]) => API.Menu[] = (menus) => {
+  const tmpMenus: API.Menu[] = [];
+  const tt_menus = total_menus.filter((m) => menus.includes(m.id));
+
+  tt_menus
+    .filter((m) => m.parent === '0')
+    .sort((a, b) => a.order - b.order)
+    .forEach((m) => {
+      const items = tt_menus.filter((item) => item.parent === m.id);
+
+      // if(items){
+      //   items.forEach( i => {
+      //     const items = total_menus.filter(item => item.parent === i.id) ;
+      //     i.children = items ;
+      //   })
+      // }
+
+      m.children = items.sort((a, b) => a.order - b.order);
+
+      tmpMenus.push(m);
+    });
+  return tmpMenus;
+};
+
 const getMenus = async (req: Request, res: Response) => {
   await waitTime(500);
   const result = {
@@ -182,4 +206,5 @@ export default {
   'POST /api/menu': createMenu,
   'POST /api/menu/:id': updateMenu,
   'DELETE /api/menu/:id': deleteMenu,
+  formatMenus,
 };
