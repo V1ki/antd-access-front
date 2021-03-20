@@ -1,10 +1,11 @@
 import ProTable from '@ant-design/pro-table';
 import type { ProColumns, ActionType } from '@ant-design/pro-table';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { getUsers, createUser, updateUser, deleteUser } from '@/services/user';
-import { Button, Modal, Form, Input, message, Space } from 'antd';
+import { Button, Modal, Form, Input, message, Space, Select } from 'antd';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { useIntl } from 'umi';
+import { getRoles } from '@/services/roles';
 
 const handleSaveUser: (user: API.User) => Promise<boolean> = async (user) => {
   const hide = message.loading(`正在${user.id ? '修改' : '创建'}用户....`);
@@ -39,9 +40,19 @@ const handleDeleteUser: (id: string) => Promise<boolean> = async (id) => {
 const UserList: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedUser, setSelectedUser] = useState<API.User | null>(null);
+  const [roles, setRoles] = useState<API.Role[]>([]);
   const [form] = Form.useForm();
   const tableRef = useRef<ActionType>();
   const intl = useIntl();
+
+  const fetchRoles = async () => {
+    const result = await getRoles();
+    setRoles(result.data);
+  };
+
+  useEffect(() => {
+    fetchRoles();
+  }, []);
 
   const columns: ProColumns<API.User>[] = [
     {
@@ -78,10 +89,10 @@ const UserList: React.FC = () => {
         defaultMessage: 'avatar',
       }),
       dataIndex: 'avatar',
-      render: (entity) => {
+      render: (_, entity) => {
         return (
           <>
-            <img src={entity.avatar} width={40} />
+            <img src={entity?.avatar || ''} width={40} />
           </>
         );
       },
@@ -257,6 +268,22 @@ const UserList: React.FC = () => {
             required={true}
           >
             <Input />
+          </Form.Item>
+          <Form.Item
+            label={intl.formatMessage({
+              id: 'user.column.roles',
+              defaultMessage: 'roles',
+            })}
+            name="roles"
+            required={true}
+          >
+            <Select mode="tags">
+              {roles.map((r) => (
+                <Select.Option key={r.identifier} value={r.identifier}>
+                  {r.name}
+                </Select.Option>
+              ))}
+            </Select>
           </Form.Item>
         </Form>
       </Modal>

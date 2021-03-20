@@ -8,6 +8,13 @@ export async function queryCurrent() {
   return request<API.CurrentUser>('/api/currentUser');
 }
 
+export async function queryCurrentMenus() {
+  return request<{
+    success: boolean;
+    data: API.Menu[];
+  }>('/api/currentUser/menus');
+}
+
 export async function queryNotices(): Promise<any> {
   return request<{ data: API.NoticeIconData[] }>('/api/notices');
 }

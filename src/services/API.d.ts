@@ -68,5 +68,6 @@ declare namespace API {
     mobile: string;
     email: string;
     status: string;
+    roles: string[];
   };
 }

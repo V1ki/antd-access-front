@@ -6,10 +6,9 @@ import { history, Link } from 'umi';
 import RightContent from '@/components/RightContent';
 import Footer from '@/components/Footer';
 import type { ResponseError } from 'umi-request';
-import { queryCurrent } from './services/user';
+import { queryCurrent, queryCurrentMenus } from './services/user';
 import defaultSettings from '../config/defaultSettings';
 import type { MenuDataItem } from '@umijs/route-utils';
-import { getMenus } from './services/menus';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
@@ -37,7 +36,10 @@ export async function getInitialState(): Promise<{
   };
 
   const fetchMenus = async () => {
-    const resp = await getMenus();
+    // const resp = await getMenus();
+    // 加上用户的角色判断.
+    // 从用户的角色中获取对应的菜单
+    const resp = await queryCurrentMenus();
 
     const menu2MenuDataItem: (m: API.Menu) => MenuDataItem = (m: API.Menu) => {
       const item: MenuDataItem = {
@@ -88,10 +90,11 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     },
     menuHeaderRender: undefined,
     menuDataRender: (menuData: MenuDataItem[]) => {
+      console.log('menuDataRender:', menuData, ' initialState menus:', initialState?.menus);
       if (initialState?.menus) {
         return initialState?.menus;
       }
-      return menuData;
+      return [];
     },
     menuItemRender: (item) => {
       return (

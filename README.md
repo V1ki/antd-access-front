@@ -13,7 +13,9 @@
 - [x] 9. 整体菜单与菜单数据的联动,补充之前菜单的国际化的缺失部分. 视频地址: [https://www.bilibili.com/video/BV1Sv411h7FS/](https://www.bilibili.com/video/BV1Sv411h7FS/)
 - [x] 10. 用户界面的 CRUD. 视频地址: [https://www.bilibili.com/video/bv1oi4y1N7X2](https://www.bilibili.com/video/bv1oi4y1N7X2)
 - [x] 11. 用户界面的 E2E 测试,优化. 视频地址: [https://www.bilibili.com/video/bv1Ry4y177db](https://www.bilibili.com/video/bv1Ry4y177db)
-- [x] 12. 给角色分配菜单.
+- [x] 12. 给角色分配菜单. 视频地址: [https://www.bilibili.com/video/BV1bZ4y1w7Sb/](https://www.bilibili.com/video/BV1bZ4y1w7Sb/)
+- [x] 13. 给用户分配角色.
+- [ ] 14. 分配菜单的 E2E 测试.
 
 ## 项目结构
 
@@ -43,12 +45,15 @@
 
 ### B 站 BV 号
 
+```
+12. 给角色分配菜单. BV1bZ4y1w7Sb
 11. 用户 E2E. bv1Ry4y177db
-12. 用户界面 CRUD. bv1oi4y1N7X2
-13. 菜单联动. BV1Sv411h7FS
-14. 菜单 E2E. BV1GZ4y1P7tF
-15. 菜单 CRUD. BV1F5411K7Jb
-16. 角色界面 E2E. BV1ZV411q7k3
-17. 角色界面 CRUD . BV1Yv4y1o78w
-18. 开发思路及规划. BV1wz4y1D7dK
-19. 角色界面 CRUD . BV19K4y1W7Gs
+10. 用户界面 CRUD. bv1oi4y1N7X2
+9. 菜单联动. BV1Sv411h7FS
+8. 菜单 E2E. BV1GZ4y1P7tF
+7. 菜单 CRUD. BV1F5411K7Jb
+6. 角色界面 E2E. BV1ZV411q7k3
+5. 角色界面 CRUD . BV1Yv4y1o78w
+4. 开发思路及规划. BV1wz4y1D7dK
+3. 角色界面 CRUD . BV19K4y1W7Gs
+```

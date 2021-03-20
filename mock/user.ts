@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import roles from './roles';
+import menus from './menus';
 
 const total_users: API.User[] = [
   {
@@ -10,6 +12,7 @@ const total_users: API.User[] = [
     mobile: 'xxxxxxxxx',
     email: 'antdesign@alipay.com',
     status: '',
+    roles: ['admin'],
   },
 
   {
@@ -21,6 +24,7 @@ const total_users: API.User[] = [
     mobile: 'xxxxxxxxx',
     email: 'antdesign@alipay.com',
     status: '',
+    roles: ['test'],
   },
 ];
 
@@ -94,6 +98,7 @@ const createUser = async (req: Request, res: Response) => {
     mobile: req.body.mobile,
     email: req.body.email,
     status: '',
+    roles: req.body.roles,
   };
   total_users.push(newUser);
   const result = {
@@ -114,14 +119,13 @@ const updateUser = async (req: Request, res: Response) => {
   }
   const oldUser = total_users[index];
   const newUser: API.User = {
-    id: oldUser.id,
-    account: oldUser.account,
+    ...oldUser,
     name: req.body.name,
     passwd: req.body.passwd,
     avatar: req.body.avatar,
     mobile: req.body.mobile,
     email: req.body.email,
-    status: '',
+    roles: req.body.roles,
   };
 
   total_users.splice(index, 1, newUser);
@@ -147,16 +151,41 @@ export default {
       });
       return;
     }
+    // console.log(user);
+    // res.send(user);
 
-    res.send({
-      name: user.name,
-      avatar: user.avatar,
-      userid: user.id,
-      email: user.email,
-      access: 'admin',
-      phone: user.email,
+    return res.json(user);
+  },
+  'GET /api/currentUser/menus': (req: Request, res: Response) => {
+    if (!user) {
+      res.status(401).send({
+        data: {
+          isLogin: false,
+        },
+        errorCode: '401',
+        errorMessage: '请先登录！',
+        success: true,
+      });
+      return;
+    }
+
+    const tmpUser = user;
+    const user_roles = roles.roles.filter((r) => tmpUser.roles.includes(r.identifier));
+
+    let menu_ids: string[] = [];
+    user_roles.map((r) => r.menus).forEach((ms) => menu_ids.push(...ms));
+
+    menu_ids = Array.from(new Set(menu_ids));
+
+    let user_menus = menus.formatMenus(menu_ids);
+
+    return res.json({
+      status: 'succes',
+      data: user_menus,
+      success: true,
     });
   },
+
   'POST /api/login/account': async (req: Request, res: Response) => {
     const { password, username, type } = req.body;
     await waitTime(2000);

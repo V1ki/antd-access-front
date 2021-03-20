@@ -2,8 +2,17 @@ import { Request, Response } from 'express';
 import { waitTime } from '../src/utils/utils';
 // import menus from './menus' ;
 
-type RoleData = API.Role & { menus: string[] };
-
+type RoleData = {
+  id: string;
+  name: string;
+  identifier: string;
+  order: number;
+  enabled: boolean;
+  // 过期时间. 非必须
+  expireTime?: number;
+  // 角色所属菜单
+  menus: string[];
+};
 const roles: RoleData[] = [
   {
     id: '1',
@@ -11,7 +20,7 @@ const roles: RoleData[] = [
     identifier: 'admin',
     order: 0,
     enabled: true,
-    menus: [],
+    menus: ['5'],
   },
   {
     id: '2',
@@ -20,7 +29,7 @@ const roles: RoleData[] = [
     order: 100,
     enabled: false,
     expireTime: 1614528000,
-    menus: [],
+    menus: ['1'],
   },
 ];
 
@@ -159,4 +168,5 @@ export default {
   'DELETE /api/role/:id': deleteRole,
   'POST /api/role/:id/menus': updateRoleMenu,
   'GET /api/role/:id/menus': getRoleMenus,
+  roles: roles,
 };

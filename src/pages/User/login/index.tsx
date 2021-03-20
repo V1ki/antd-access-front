@@ -57,10 +57,6 @@ const Login: React.FC = () => {
       setInitialState({
         ...initialState,
         menus,
-      });
-
-      setInitialState({
-        ...initialState,
         currentUser: userInfo,
       });
     }
