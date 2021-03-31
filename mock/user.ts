@@ -98,7 +98,7 @@ const createUser = async (req: Request, res: Response) => {
     mobile: req.body.mobile,
     email: req.body.email,
     status: '',
-    roles: req.body.roles,
+    roles: req.body.roles || [],
   };
   total_users.push(newUser);
   const result = {
@@ -125,7 +125,7 @@ const updateUser = async (req: Request, res: Response) => {
     avatar: req.body.avatar,
     mobile: req.body.mobile,
     email: req.body.email,
-    roles: req.body.roles,
+    roles: req.body.roles || [],
   };
 
   total_users.splice(index, 1, newUser);

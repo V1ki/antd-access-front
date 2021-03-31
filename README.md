@@ -14,8 +14,8 @@
 - [x] 10. 用户界面的 CRUD. 视频地址: [https://www.bilibili.com/video/bv1oi4y1N7X2](https://www.bilibili.com/video/bv1oi4y1N7X2)
 - [x] 11. 用户界面的 E2E 测试,优化. 视频地址: [https://www.bilibili.com/video/bv1Ry4y177db](https://www.bilibili.com/video/bv1Ry4y177db)
 - [x] 12. 给角色分配菜单. 视频地址: [https://www.bilibili.com/video/BV1bZ4y1w7Sb/](https://www.bilibili.com/video/BV1bZ4y1w7Sb/)
-- [x] 13. 给用户分配角色.
-- [ ] 14. 分配菜单的 E2E 测试.
+- [x] 13. 给用户分配角色. 视频地址: [https://www.bilibili.com/video/BV11h411Q7Bj/](https://www.bilibili.com/video/BV11h411Q7Bj/)
+- [x] 14. 分配菜单的 E2E 测试.
 
 ## 项目结构
 
@@ -46,6 +46,7 @@
 ### B 站 BV 号
 
 ```
+13. 分配菜单E2E. BV11h411Q7Bj
 12. 给角色分配菜单. BV1bZ4y1w7Sb
 11. 用户 E2E. bv1Ry4y177db
 10. 用户界面 CRUD. bv1oi4y1N7X2

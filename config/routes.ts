@@ -48,13 +48,13 @@ const routes: IBestAFSRoute[] = [
     name: 'list.test',
     icon: 'accountBook',
     path: '/roles',
-    component: './roles',
+    component: './Roles',
   },
   {
     name: 'menu',
     icon: 'accountBook',
     path: '/menus',
-    component: './menus',
+    component: './Menus',
   },
   {
     path: '/users',
