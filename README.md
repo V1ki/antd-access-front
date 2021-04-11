@@ -15,7 +15,13 @@
 - [x] 11. 用户界面的 E2E 测试,优化. 视频地址: [https://www.bilibili.com/video/bv1Ry4y177db](https://www.bilibili.com/video/bv1Ry4y177db)
 - [x] 12. 给角色分配菜单. 视频地址: [https://www.bilibili.com/video/BV1bZ4y1w7Sb/](https://www.bilibili.com/video/BV1bZ4y1w7Sb/)
 - [x] 13. 给用户分配角色. 视频地址: [https://www.bilibili.com/video/BV11h411Q7Bj/](https://www.bilibili.com/video/BV11h411Q7Bj/)
-- [x] 14. 分配菜单的 E2E 测试.
+- [x] 14. 分配菜单的 E2E 测试. 视频地址: [https://www.bilibili.com/video/BV1Qi4y1P7pZ/](https://www.bilibili.com/video/BV1Qi4y1P7pZ/)
+
+## 小阶段总结
+
+### 1-14 期 总结:
+
+搭建了简单的框架,大致实现了角色+菜单+用户的一个联动, 使用 Mock 来模拟接口返回数据, Cypress 模拟 E2E 测试. 需要改进的地方: 1. 视频的时长需要控制一下.现在的时长基本都超过了 40 分钟. 2. 关于界面的美化, 需要稍微注意一点.
 
 ## 项目结构
 
@@ -46,6 +52,7 @@
 ### B 站 BV 号
 
 ```
+14. 分配菜单的 E2E 测试. BV1Qi4y1P7pZ
 13. 分配菜单E2E. BV11h411Q7Bj
 12. 给角色分配菜单. BV1bZ4y1w7Sb
 11. 用户 E2E. bv1Ry4y177db
