@@ -9,9 +9,10 @@ export type LoginParamsType = {
 };
 
 export async function fakeAccountLogin(params: LoginParamsType) {
-  return request<API.LoginStateType>('/api/login/account', {
+  return request<API.LoginStateType>('/api/v1/login', {
     method: 'POST',
     data: params,
+    requestType: 'form',
   });
 }
 
