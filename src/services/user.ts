@@ -10,9 +10,9 @@ export async function queryCurrent() {
 
 export async function queryCurrentMenus() {
   return request<{
-    success: boolean;
+    code: number;
     data: API.Menu[];
-  }>('/api/currentUser/menus');
+  }>('/api/menu/current');
 }
 
 export async function queryNotices(): Promise<any> {

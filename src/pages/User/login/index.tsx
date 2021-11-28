@@ -14,6 +14,7 @@ import type { LoginParamsType } from '@/services/login';
 import { fakeAccountLogin } from '@/services/login';
 
 import styles from './index.less';
+import { PageLoading } from '@ant-design/pro-layout';
 
 const LoginMessage: React.FC<{
   content: string;
@@ -44,14 +45,17 @@ const Login: React.FC = () => {
   const [submitting, setSubmitting] = useState(false);
   const [userLoginState, setUserLoginState] = useState<API.LoginStateType | undefined>();
   const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const { initialState, loading, setInitialState } = useModel('@@initialState');
 
   const intl = useIntl();
 
+  if (loading || !initialState) {
+    return <PageLoading />;
+  }
+
   const fetchUserInfo = async () => {
     const userInfo = await initialState?.fetchUserInfo?.();
-    // const menus = await initialState?.fetchMenus?.();
-    const menus: never[] = [];
+    const menus = await initialState?.fetchMenus?.();
     if (userInfo) {
       setInitialState({
         ...initialState,
@@ -116,9 +120,7 @@ const Login: React.FC = () => {
                 },
               },
             }}
-            onFinish={async (values) => {
-              handleSubmit(values as LoginParamsType);
-            }}
+            onFinish={handleSubmit}
           >
             <Tabs activeKey={type} onChange={setType}>
               <Tabs.TabPane
