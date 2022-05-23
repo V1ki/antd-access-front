@@ -51,7 +51,7 @@ export async function getInitialState(): Promise<{
       };
       return item;
     };
-    if (resp?.success) {
+    if (resp.code === 0) {
       return resp.data.map(menu2MenuDataItem);
     }
     return [];
@@ -85,6 +85,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
       const { location } = history;
       // 如果没有登录，重定向到 login
       if (!initialState?.currentUser && location.pathname !== '/user/login') {
+        console.log('重定向到 login');
         history.push('/user/login');
       }
     },
@@ -165,4 +166,13 @@ const errorHandler = (error: ResponseError) => {
 
 export const request: RequestConfig = {
   errorHandler,
+  credentials: 'include',
+  requestInterceptors: [
+    (url, options) => {
+      return {
+        url: `http://localhost:10086${url}`,
+        options,
+      };
+    },
+  ],
 };
