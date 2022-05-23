@@ -14,10 +14,11 @@ declare namespace API {
     unreadCount?: number;
   };
 
-  export type LoginStateType = {
-    status?: 'ok' | 'error';
-    type?: string;
+  export type ResponseData = {
+    code: number ;
+    msg: string;
   };
+
 
   export type NoticeIconData = {
     id: string;
