@@ -39,7 +39,7 @@ declare namespace API {
     name: string;
     identifier: string;
     order: number;
-    enabled: boolean;
+    disabled: boolean;
     // 过期时间. 非必须
     expireTime?: number;
     // 角色所属菜单

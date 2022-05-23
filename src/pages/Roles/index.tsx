@@ -136,27 +136,27 @@ const RoleList: React.FC = () => {
     },
     {
       title: intl.formatMessage({
-        id: 'roles.column.enabled',
-        defaultMessage: 'Enabled',
+        id: 'roles.column.disabled',
+        defaultMessage: 'disabled',
       }),
-      dataIndex: 'enabled',
+      dataIndex: 'disabled',
       // renderText: (text: any, record: API.Role, index: number) => {
-      //   return record.enabled ? "已启用": "未启用"
+      //   return record.disabled ? "已启用": "未启用"
       // }
       valueEnum: {
         true: {
           text: intl.formatMessage({
-            id: 'roles.column.enabled.true',
-            defaultMessage: 'enabled',
+            id: 'roles.column.disabled.true',
+            defaultMessage: 'disabled',
           }),
-          status: 'Success',
+          status: 'Warning',
         },
         false: {
           text: intl.formatMessage({
-            id: 'roles.column.enabled.false',
-            defaultMessage: 'disable',
+            id: 'roles.column.disabled.false',
+            defaultMessage: 'Enabled',
           }),
-          status: 'Warning',
+          status: 'Success',
         },
       },
     },
@@ -299,10 +299,10 @@ const RoleList: React.FC = () => {
 
           <Form.Item
             label={intl.formatMessage({
-              id: 'roles.column.enabled',
-              defaultMessage: 'Enabled',
+              id: 'roles.column.disabled',
+              defaultMessage: 'Disabled',
             })}
-            name="enabled"
+            name="disabled"
             valuePropName="checked"
             required={true}
           >

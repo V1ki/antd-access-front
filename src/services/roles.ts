@@ -1,11 +1,11 @@
 import { request } from 'umi';
 
 export async function getRoles() {
-  return request(`/api/roles`);
+  return request(`/api/role/list`);
 }
 
 export async function createRole(role: API.Role) {
-  return request(`/api/role`, {
+  return request(`/api/role/create`, {
     method: 'post',
     data: role,
   });
