@@ -5,14 +5,14 @@ export async function getMenus() {
 }
 
 export async function createMenu(menu: API.Menu) {
-  return request(`/api/menu`, {
+  return request(`/api/menu/create`, {
     method: 'post',
     data: menu,
   });
 }
 
 export async function updateMenu(menu: API.Menu) {
-  return request(`/api/menu/${menu.id}`, {
+  return request(`/api/menu/${menu.mid}`, {
     method: 'post',
     data: menu,
   });

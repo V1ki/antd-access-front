@@ -5,7 +5,7 @@ import {
   UserOutlined,
   WeiboCircleOutlined,
 } from '@ant-design/icons';
-import { Alert, Space, message, Tabs } from 'antd';
+import { Space, message, Tabs } from 'antd';
 import React, { useState } from 'react';
 import ProForm, { ProFormCheckbox, ProFormText } from '@ant-design/pro-form';
 import { useIntl, Link, history, FormattedMessage, SelectLang, useModel } from 'umi';
@@ -14,19 +14,6 @@ import type { LoginParamsType } from '@/services/login';
 import { loginRequest } from '@/services/login';
 
 import styles from './index.less';
-
-const LoginMessage: React.FC<{
-  content: string;
-}> = ({ content }) => (
-  <Alert
-    style={{
-      marginBottom: 24,
-    }}
-    message={content}
-    type="error"
-    showIcon
-  />
-);
 
 /**
  * 此方法会跳转到 redirect 参数所在的位置
@@ -50,7 +37,7 @@ const Login: React.FC = () => {
     const userInfo = await initialState?.fetchUserInfo?.();
     const menus = await initialState?.fetchMenus?.();
     if (userInfo) {
-      setInitialState({
+      await setInitialState({
         ...initialState,
         menus,
         currentUser: userInfo,

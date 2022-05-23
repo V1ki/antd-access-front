@@ -90,7 +90,7 @@ const RoleList: React.FC = () => {
     const combineMenus = menus.data.map((c: any) => menuCombine(c));
     const menu2Node: (m: API.Menu) => DataNode = (m) => {
       return {
-        key: m.id,
+        key: m.mid,
         title: intl.formatMessage({ id: `${m.name}` }),
         children: m.children?.map(menu2Node),
       };

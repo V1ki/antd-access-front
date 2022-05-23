@@ -166,13 +166,5 @@ const errorHandler = (error: ResponseError) => {
 
 export const request: RequestConfig = {
   errorHandler,
-  credentials: 'include',
-  requestInterceptors: [
-    (url, options) => {
-      return {
-        url: `http://localhost:10086${url}`,
-        options,
-      };
-    },
-  ],
+  credentials: 'include'
 };

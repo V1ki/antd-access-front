@@ -46,9 +46,10 @@ declare namespace API {
     menus: Menu[];
   };
   export type Menu = {
-    id: string;
+    mid: string;
     name: string;
     icon: string;
+    identifier: string;
     // 路径
     path: string;
     parent: string;

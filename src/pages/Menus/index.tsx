@@ -7,9 +7,9 @@ import { DeleteOutlined, EditOutlined, FileAddOutlined } from '@ant-design/icons
 import { useIntl, useModel } from 'umi';
 
 const handleSaveMenu: (role: API.Menu) => Promise<boolean> = async (menu) => {
-  const hide = message.loading(`正在${menu.id ? '修改' : '创建'}菜单....`);
+  const hide = message.loading(`正在${menu.mid ? '修改' : '创建'}菜单....`);
 
-  const resp = menu.id ? await updateMenu(menu) : await createMenu(menu);
+  const resp = menu.mid ? await updateMenu(menu) : await createMenu(menu);
 
   hide();
   if (resp && resp.success) {
@@ -49,7 +49,15 @@ const RoleList: React.FC = () => {
         id: 'menus.column.id',
         defaultMessage: 'ID',
       }),
-      dataIndex: 'id', // data.id or data["id"]
+      dataIndex: 'mid', // data.id or data["id"]
+      hideInTable: true,
+    },
+    {
+      title: intl.formatMessage({
+        id: 'menus.column.identifier',
+        defaultMessage: 'identifier',
+      }),
+      dataIndex: 'identifier',
     },
     {
       title: intl.formatMessage({
@@ -78,7 +86,7 @@ const RoleList: React.FC = () => {
         id: 'menus.column.order',
         defaultMessage: 'Order',
       }),
-      dataIndex: 'order',
+      dataIndex: 'idx',
     },
     {
       title: intl.formatMessage({
@@ -95,14 +103,14 @@ const RoleList: React.FC = () => {
             id: 'menus.column.hide.true',
             defaultMessage: 'enabled',
           }),
-          status: 'Success',
+          status: 'Warning',
         },
         false: {
           text: intl.formatMessage({
             id: 'menus.column.hide.false',
             defaultMessage: 'disable',
           }),
-          status: 'Warning',
+          status: 'Success',
         },
       },
     },
@@ -114,18 +122,18 @@ const RoleList: React.FC = () => {
           <>
             <Space>
               <Button
-                id={`menus-add-${entity.id}`}
+                id={`menus-add-${entity.mid}`}
                 icon={<FileAddOutlined />}
                 onClick={() => {
                   // 增加子菜单.
                   setModalVisible(true);
                   form.setFieldsValue({
-                    parent: entity.id,
+                    parent: entity.mid,
                   });
                 }}
               />
               <Button
-                id={`menus-update-${entity.id}`}
+                id={`menus-update-${entity.mid}`}
                 icon={<EditOutlined />}
                 onClick={() => {
                   setModalVisible(true);
@@ -133,10 +141,10 @@ const RoleList: React.FC = () => {
                 }}
               />
               <Button
-                id={`menus-delete-${entity.id}`}
+                id={`menus-delete-${entity.mid}`}
                 icon={<DeleteOutlined />}
                 onClick={async () => {
-                  const result = await handleDeleteMenu(entity.id);
+                  const result = await handleDeleteMenu(entity.mid);
                   if (result) {
                     const menus = await initialState?.fetchMenus?.();
 
@@ -192,6 +200,7 @@ const RoleList: React.FC = () => {
       />
 
       <Modal
+        title={"Create Menu"}
         onCancel={() => {
           setModalVisible(false);
         }}
@@ -224,7 +233,7 @@ const RoleList: React.FC = () => {
               id: 'menus.column.id',
               defaultMessage: 'ID',
             })}
-            name="id"
+            name="mid"
             hidden
           >
             <Input />
@@ -236,6 +245,16 @@ const RoleList: React.FC = () => {
             })}
             name="parent"
             hidden
+          >
+            <Input />
+          </Form.Item>
+
+          <Form.Item
+            label={intl.formatMessage({
+              id: 'menus.column.identifier',
+              defaultMessage: 'identifier',
+            })}
+            name="identifier"
           >
             <Input />
           </Form.Item>
@@ -276,7 +295,7 @@ const RoleList: React.FC = () => {
               id: 'menus.column.order',
               defaultMessage: 'Order',
             })}
-            name="order"
+            name="idx"
             required={true}
           >
             <InputNumber />
